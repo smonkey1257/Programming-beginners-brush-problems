@@ -35,3 +35,25 @@ int main() {
 }
 
 
+/* BC19 牛牛的对齐 */
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 0, c = 0;
+    scanf("%d %d %d", &a, &b, &c);
+    printf("%d%8d%8d\n", a, b, c);
+    return 0;
+}
+//第二三个数字占 8 个空格靠右对齐输出
+
+
+/* BC20 进制A+B */
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 0;
+    scanf("%x %o", &a, &b);
+    printf("%d", a + b);
+    return 0;
+}
+//数据在内存中以二进制补码的形式存储和计算，打印时再转换成原码输出
