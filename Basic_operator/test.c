@@ -78,3 +78,36 @@ int main() {
 }
 
 
+/* BC28 整数的十位 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    scanf("%d", &num);
+    printf("%d", (num / 10) % 10);
+    return 0;
+}
+
+
+/* BC29 开学？ */
+#include <stdio.h>
+
+int main() {
+    int week = 0, day = 0;
+    scanf("%d %d", &week, &day);
+    printf("%d", (week + day - 1) % 7 + 1);//避免周日余数为0
+    return 0;
+}
+
+
+/* BC30 时间转换 */
+#include <stdio.h>
+
+int main() {
+    int seconds = 0;
+    scanf("%d", &seconds);
+    printf("%d %d %d", (seconds / 3600), (seconds % 3600) / 60, (seconds % 60));
+    return 0;
+}
+
+
