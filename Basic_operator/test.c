@@ -111,3 +111,56 @@ int main() {
 }
 
 
+/* BC31 2的n次方计算 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    scanf("%d", &n);
+    printf("%d", (1 << n));
+    return 0;
+}
+
+
+/* BC32 你能活多少秒 */
+#include <stdio.h>
+
+int main() {
+    int age = 0;
+    scanf("%d", &age);
+    printf("%d0000", age * 3156);
+    return 0;
+}
+
+
+/* BC33 统计成绩 */
+#include <stdio.h>
+
+int main() {
+    float ave = 0.0f, max = 0.0f, min = 0.0f;
+    int n = 0;
+    float tmp = 0.0f;
+
+    //输入
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%f", &tmp);
+        if (i == 0)
+        {
+            min = max = tmp;
+        }
+        else
+        {
+            if (tmp > max)
+                max = tmp;
+            else if (tmp < min)
+                min = tmp;
+        }
+        ave += tmp;
+    }
+
+    //输出最大值、最小值、平均值
+    printf("%.2f %.2f %.2f\n", max, min, ave /= n);
+    return 0;
+}
