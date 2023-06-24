@@ -164,3 +164,46 @@ int main() {
     printf("%.2f %.2f %.2f\n", max, min, ave /= n);
     return 0;
 }
+
+
+/* BC34 计算三角形的周长和面积 */
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float a = 0.0f, b = 0.0f, c = 0.0f;
+    float C = 0.0f, S = 0.0f, p = 0.0f;
+
+    scanf("%f %f %f", &a, &b, &c);
+    C = (a + b + c);
+    p = C / 2;
+    S = sqrt(p * (p - a) * (p - b) * (p - c));//海伦公式
+    printf("circumference=%.2f area=%.2f\n", C, S);
+
+    return 0;
+}
+
+
+/* BC35 KiKi和酸奶 */
+#include <stdio.h>
+
+int main() {
+    int n = 0, h = 0, m = 0;
+    while (~scanf("%d %d %d", &n, &h, &m))
+    {
+        printf("%d\n", ((n * h) - m) / h);
+    }
+    return 0;
+}
+
+
+/* BC36 温度转换 */
+#include <stdio.h>
+
+int main() {
+    float f = 0.0f;
+    scanf("%f", &f);
+    printf("%.3f", (5.0 / 9.0) * (f - 32));
+    return 0;
+}
+
