@@ -207,3 +207,54 @@ int main() {
     return 0;
 }
 
+
+/* BC37 牛牛的圆 */
+#include <stdio.h>
+
+int main() {
+    float r = 0.0f, pi = 3.14;
+    scanf("%f", &r);
+    printf("%.2f", pi * r * r);
+    return 0;
+}
+
+
+/* BC38 牛牛的并联电路 */
+#include <stdio.h>
+
+int main() {
+    float r1 = 0.0f, r2 = 0.0f;
+    scanf("%f %f", &r1, &r2);
+    printf("%.1f", 1.0 / ((1.0 / r1) + (1.0 / r2)));
+    return 0;
+}
+
+
+/* BC39 牛牛的水杯 */
+#include <stdio.h>
+
+int main() {
+    int height = 0, radius = 0;
+    scanf("%d %d", &height, &radius);
+    float V = (3.14 * height * radius * radius) / 1000;
+    int caps = 10 / V;
+    (10 / V) == caps ? printf("%.d", caps) : printf("%d", caps + 1);
+    return 0;
+}
+//判断浮点数除法结果和整数除法结果是否相同，借以判断杯数是否相同
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
