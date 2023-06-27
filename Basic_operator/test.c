@@ -245,10 +245,60 @@ int main() {
 
 
 
+/* BC40 牛牛的等差数列 */
+#include <stdio.h>
+
+int main() {
+    int a1 = 0, a2 = 0;
+    int a3 = 0;
+    scanf("%d %d", &a1, &a2);
+    printf("%d\n", (a2 - a1) + a2);
+    return 0;
+}
 
 
+/* BC41 牛牛的球 */
+#include <stdio.h>
+
+int main() {
+    float pi = 3.14f;
+    int r = 0;
+    scanf("%d", &r);
+    printf("%.2f", (4.0 / 3.0) * 3.14 * r * r * r);
+    return 0;
+}
 
 
+/* BC42 小乐乐定闹钟 */
+#include <stdio.h>
+
+int main() {
+    //只考虑小时和分钟
+    long long hour = 0, minute = 0, k = 0;
+    scanf("%lld:%lld %lld", &hour, &minute, &k);
+    hour = ((minute + k) / 60 + hour) % 24;
+    minute = (minute + k) % 60;
+    printf("%02lld:%02lld\n", hour, minute);
+    return 0;
+}
+
+
+/* BC44 小乐乐与欧几里得 */
+#include <stdio.h>
+
+int main() {
+    long long m = 0, n = 0, r = 0;
+    scanf("%lld %lld", &m, &n);
+    long long p = m * n;//保留以便求最小公倍数
+    while (n)//当n = 0时退出循环，m是最大公约数
+    {
+        r = m % n;
+        m = n;
+        n = r;
+    }
+    printf("%lld", m + (p / m));
+    return 0;
+}
 
 
 
