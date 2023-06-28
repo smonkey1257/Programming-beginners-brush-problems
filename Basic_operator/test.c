@@ -301,9 +301,64 @@ int main() {
 }
 
 
+/* BC43 小乐乐排电梯 */
+#include <stdio.h>
+
+int main() {
+    int minute = 0, people = 0;
+    scanf("%d", &people);
+    minute = (people / 12) * 4 + 2;
+    printf("%d", minute);
+    return 0;
+}
 
 
+/* BC45 小乐乐改数字 */
+#include <stdio.h>
+#include <math.h>
 
+ int main() {
+     int n = 0, ret = 0, i = 0;
+     scanf("%d", &n);
+     //采取十进制的思路
+     while(n)
+     {
+         int unit = n % 10;
+         unit = (unit % 2 == 0) ? 0 : 1;
+         ret += unit * pow(10, i++);
+         n /= 10;
+     }
+     printf("%d", ret);
+     return 0;
+ }
+
+//递归方法
+int changeNumber(int n)
+{
+    int unit = n % 10;
+    unit = (unit % 2) ? 1 : 0;
+    n /= 10;
+    if (n)
+        return 10 * changeNumber(n) + unit;
+    return unit;
+}
+int main() {
+    int n = 0, ret = 0, i = 0;
+    scanf("%d", &n);
+    printf("%d", changeNumber(n));
+    return 0;
+}
+
+
+/* BC46 KiKi算期末成绩 */
+#include <stdio.h>
+
+int main() {
+    int epm = 0, behave = 0, pscore = 0, fscore = 0;
+    scanf("%d%d%d%d", &epm, &behave, &pscore, &fscore);
+    printf("%.1f", epm * 0.2 + behave * 0.1 + pscore * 0.2 + fscore * 0.5);
+    return 0;
+}
 
 
 
