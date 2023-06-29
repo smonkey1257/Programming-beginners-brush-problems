@@ -361,5 +361,37 @@ int main() {
 }
 
 
+/* BC47 (a+b-c)*d的计算问题 */
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 0, c = 0, d = 0;
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    printf("%d", (a + b - c) * d);
+    return 0;
+}
 
 
+/* BC48 牛牛的线段 */
+#include <stdio.h>
+
+int main() {
+    int x1 = 0, x2 = 0;
+    int y1 = 0, y2 = 0;
+    int len = 0;
+    scanf("%d %d\n%d %d", &x1, &y1, &x2, &y2);
+    len = ((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2));
+    printf("%d", len);
+    return 0;
+}
+
+
+/* BC49 kiki算数 */
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 0;
+    scanf("%d %d", &a, &b);
+    printf("%d", ((a % 100) + (b % 100)) % 100);
+    return 0;
+}
