@@ -71,8 +71,72 @@ int main() {
 }
 
 
+/* BC54 Å£Å£µÄÅĞ¶ÏÌâ */
+#include <stdio.h>
+
+int main() {
+    int x = 0, l = 0, r = 0;
+    scanf("%d %d %d", &x, &l, &r);
+    if (l <= x && x <= r)
+    {
+        printf("true\n");
+    }
+    else {
+        printf("false\n");
+    }
+    return 0;
+}
 
 
+/* BC55 ÅĞ¶ÏÈòÄê */
+#include <stdio.h>
+
+int main() {
+    int year = 0;
+    scanf("%d", &year);
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        printf("yes\n");
+    }
+    else {
+        printf("no\n");
+    }
+    return 0;
+}
+
+
+/* BC56 ÅĞ¶Ï×ÖÄ¸ */
+#include <stdio.h>
+
+int main() {
+    char str = 0;
+    scanf("%c", &str);
+    if (('A' <= str && str <= 'Z') || ('a' <= str && str <= 'z')) {
+        printf("YES\n");
+    }
+    else {
+        printf("NO\n");
+    }
+    return 0;
+}
+
+
+/* BC57 ËÄ¼¾ */
+#include <stdio.h>
+
+int main() {
+    int time = 0;
+    scanf("%6d", &time);
+    time %= 100;
+    if (3 <= time && time <= 5)
+        printf("spring\n");
+    else if (6 <= time && time <= 8)
+        printf("summer\n");
+    else if (9 <= time && time <= 11)
+        printf("autumn\n");
+    else
+        printf("winter\n");
+    return 0;
+}
 
 
 
