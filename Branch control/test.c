@@ -139,7 +139,74 @@ int main() {
 }
 
 
+/* BC58 健康评估 */
+#include <stdio.h>
 
+int main() {
+    float weight = 0.0f, height = 0.0f;
+    float BMI = 0.0f;
+    scanf("%f %f", &weight, &height);
+    BMI = weight / (height * height);
+    if (BMI <= 23.9 && 18.5 <= BMI)
+        printf("Normal\n");
+    else
+        printf("Abnormal\n");
+    return 0;
+}
+
+
+/* BC59 小乐乐找最大数 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    int max = 0;
+    scanf("%d", &num);
+    max = num;
+    for (int i = 0; i < 3; i++)
+    {
+        scanf("%d", &num);
+        if (num > max)
+            max = num;
+    }
+    printf("%d", max);
+    return 0;
+}
+
+
+/* BC60 判断是不是字母 */
+#include <stdio.h>
+
+int main() {
+    char str = 0;
+    while (~scanf("%c", &str))
+    {
+        getchar();
+        if (('A' <= str && str <= 'Z') || ('a' <= str && str <= 'z'))
+            printf("%c is an alphabet.\n", str);
+        else
+            printf("%c is not an alphabet.\n", str);
+    }
+    return 0;
+}
+
+
+/* BC61 牛牛的二三七整除 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    scanf("%d", &n);
+    if (!(n % 2) || !(n % 3) || !(n % 7))
+    {
+        if (!(n % 2)) printf("2 ");
+        if (!(n % 3)) printf("3 ");
+        if (!(n % 7)) printf("7 ");
+    }
+    else
+        putchar('n');
+    return 0;
+}
 
 
 
