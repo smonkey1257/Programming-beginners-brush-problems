@@ -209,6 +209,31 @@ int main() {
 }
 
 
+/* BC62 统计数据正负个数 */
+#include <stdio.h>
+
+int main() {
+    int positive = 0, negative = 0;
+    int n = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        scanf("%d", &n);
+        if (n > 0)
+            positive++;
+        if (n < 0)
+            negative++;
+    }
+    printf("positive:%d\nnegative:%d", positive, negative);
+    return 0;
+}
+
+
+/* BC63 网购 */
+
+
+
+
+
 
 
 
