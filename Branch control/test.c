@@ -229,8 +229,72 @@ int main() {
 
 
 /* BC63 网购 */
+#include <stdio.h>
+
+int main() {
+    float price = 0.0f, money = 0.0f;
+    int month = 0, day = 0, flag = 0;
+    scanf("%f %d %d %d", &price, &month, &day, &flag);
+    if (flag == 1) {
+        if (month == 11) {
+            money = price * 0.7 - 50;
+        }
+        else {
+            money = price * 0.8 - 50;
+        }
+    }
+    else {
+        if (month == 11) {
+            money = price * 0.7;
+        }
+        else {
+            money = price * 0.8;
+        }
+    }
+    money >= 0 ? printf("%.2f", money) : printf("0.00");
+    return 0;
+}
 
 
+/* BC64 牛牛的快递 */
+#include <stdio.h>
+
+int main() {
+    float weight = 0.0f;
+    int money = 20;
+    char isUrgent = 0;
+    scanf("%f %c", &weight, &isUrgent);
+    if (weight <= 1.0) {
+        money += isUrgent == 'y' ? 5 : money;
+    }
+    else {
+        money += weight > (int)weight ? ((int)(weight - 1)) + 1 : (weight - 1);
+        isUrgent == 'y' ? money += 5.0f : money;
+    }
+    printf("%d", money);
+    return 0;
+}
+
+
+/* BC65 计算商品打折结算金额 */
+#include <stdio.h>
+
+int main() {
+    float money = 0.0f;
+    scanf("%f", &money);
+    if (100 <= money && money < 500)
+        money *= 0.9;
+    else if (500 <= money && money < 2000)
+        money *= 0.8;
+    else if (2000 <= money && money < 5000)
+        money *= 0.7;
+    else if (money >= 5000)
+        money *= 0.6;
+    else
+        money = money;
+    printf("%.1f", money);
+    return 0;
+}
 
 
 
