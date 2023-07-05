@@ -297,6 +297,87 @@ int main() {
 }
 
 
+/* BC66 牛牛的通勤 */
+#include <stdio.h>
+
+int main() {
+    int distance = 0;
+    scanf("%d", &distance);
+    printf("%c", distance < (distance / 10 + 10) ? 'w' : 'v');
+    return 0;
+}
+
+
+/* BC67 牛牛的金币 */
+#include <stdio.h>
+
+int main() {
+    int x = 0, y = 0;
+    int x1 = 0, y1 = 0;
+
+    scanf("%d %d", &x, &y);
+    scanf("%d %d", &x1, &y1);
+    if (x == x1) {//上下走
+        (y1 > y) ? printf("u") : printf("d");
+    }
+    else if (y == y1) {//左右走
+        (x1 > x) ? printf("r") : printf("l");
+    }
+    return 0;
+}
+
+
+/* BC68 牛牛的一周 */
+#include <stdio.h>
+
+int main() {
+    int day = 0;
+    scanf("%d", &day);
+    switch (day) {
+    case 1:
+        printf("Monday");
+        break;
+    case 2:
+        printf("Tuesday");
+        break;
+    case 3:
+        printf("Wednesday");
+        break;
+    case 4:
+        printf("Thursday");
+        break;
+    case 5:
+        printf("Friday");
+        break;
+    case 6:
+        printf("Saturday");
+        break;
+    case 7:
+        printf("Sunday");
+        break;
+    }
+    return 0;
+}
+
+
+/* BC69 HTTP状态码 */
+#include <stdio.h>
+
+int main() {
+    int http = 0;
+    while (~scanf("%d", &http))
+    {
+        if (http == 200) printf("OK\n");
+        if (http == 202) printf("Accepted\n");
+        if (http == 400) printf("Bad Request\n");
+        if (http == 403) printf("Forbidden\n");
+        if (http == 404) printf("Not Found\n");
+        if (http == 500) printf("Internal Server Error\n");
+        if (http == 502) printf("Bad Gateway\n");
+    }
+    return 0;
+}
+
 
 
 
