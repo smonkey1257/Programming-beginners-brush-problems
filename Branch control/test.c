@@ -379,7 +379,117 @@ int main() {
 }
 
 
+/* BC70 计算单位阶跃函数 */
+#include <stdio.h>
 
+int main() {
+    double t = 0.0;
+    while (~scanf("%lf", &t))
+    {
+        if (t > 0)
+            printf("1\n");
+        else if (t < 0)
+            printf("0\n");
+        else
+            printf("0.5\n");
+    }
+    return 0;
+}
+
+
+/* BC71 三角形判断 */
+#include <stdio.h>
+
+int main() {
+    int a = 0, b = 0, c = 0;
+    while (~scanf("%d %d %d", &a, &b, &c))
+    {
+        if (a + b > c && b + c > a && a + c > b)
+        {
+            if (a == b && b == c && a == c)
+            {
+                printf("Equilateral triangle!\n");
+            }
+            else if (a == b || b == c || a == c)
+            {
+                printf("Isosceles triangle!\n");
+            }
+            else
+            {
+                printf("Ordinary triangle!\n");
+            }
+        }
+        else
+        {
+            printf("Not a triangle!\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC72 牛牛的计划 */
+#include <stdio.h>
+
+int main() {
+    int y = 0, m = 0, d = 0;
+    int y1 = 0, m1 = 0, d1 = 0;
+    scanf("%d %d %d", &y, &m, &d);
+    scanf("%d %d %d", &y1, &m1, &d1);
+    if ((y1 == y) && (m1 == m) && (d1 >= d) || (y1 > y))
+    {
+        printf("yes\n");
+    }
+    else
+    {
+        printf("no\n");
+    }
+    return 0;
+}
+
+
+/* BC73 计算一元二次方程 */
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double a = 0.0, b = 0.0, c = 0.0;
+    while (~scanf("%lf %lf %lf", &a, &b, &c))
+    {
+
+        if (a == 0)
+        {
+            printf("Not quadratic equation\n");
+        }
+        else
+        {
+            double x1 = 0.0, x2 = 0.0;
+            double deta = b * b - 4 * a * c;
+            x1 = ((-b) - sqrt(deta)) / (2 * a);
+            x2 = ((-b) + sqrt(deta)) / (2 * a);
+
+            if (deta > 0)//实数根
+            {
+                printf("x1=%.2lf;x2=%.2lf", x1, x2);
+            }
+            else if (deta == 0)//重根
+            {
+                if (-b + sqrt(deta) == 0)
+                    printf("x1=x2=%.2lf\n", -b + sqrt(deta));
+                else
+                    printf("x1=x2=%.2lf\n", x2);
+            }
+            else//虚数根
+            {
+                double real = -b / 2.0 / a;
+                double imaginary = sqrt(-deta) / (2 * a);
+                printf("x1=%.2lf-%.2lfi;x2=%.2lf+%.2lfi",
+                    real, imaginary, real, imaginary);
+            }
+        }
+    }
+    return 0;
+}
 
 
 
