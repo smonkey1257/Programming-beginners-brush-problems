@@ -492,15 +492,107 @@ int main() {
 }
 
 
+/* BC74 获得月份天数 */
+#include <stdio.h>
+
+int main() {
+    int year = 0;
+    int mon = 0;
+    int arr[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    while (~scanf("%d %d", &year, &mon))
+    {
+        //判断闰年输出闰二月
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 4 == 0 && year % 400 == 0) && mon == 2)
+            printf("29\n");
+        else
+            printf("%d\n", arr[mon]);
+    }
+
+    return 0;
+}
 
 
+/* BC75 小乐乐是否被叫家长 */
+#include <stdio.h>
+
+int main() {
+    int math = 0;
+    int chinese = 0;
+    int english = 0;
+
+    scanf("%d %d %d", &math, &chinese, &english);
+    if ((math + chinese + english) / 3 < 60)
+        printf("YES\n");
+    else
+        printf("NO\n");
+    return 0;
+}
 
 
+/* BC76 [NOIP2008]ISBN号码 */
+#include <stdio.h>
+#include <string.h>
+
+//计算标识符
+int identifier(char str[]) {
+    int sum = 0;
+    int count = 1;
+    for (int i = 1; i <= 11; i++, str++)
+    {
+        if (*str == '-')
+            continue;
+        else
+            sum += ((*str - '0') * count++);
+    }
+    int ret = sum % 11;
+    return ret == 10 ? 'X' : ret + '0';
+}
+
+int main() {
+    char ISBN[15] = { 0 };
+    scanf("%s", ISBN);
+
+    if (ISBN[strlen(ISBN) - 1] == identifier(ISBN))//新旧标识符对比
+    {
+        printf("Right\n");
+    }
+    else
+    {
+        ISBN[strlen(ISBN) - 1] = identifier(ISBN);
+        printf("%s\n", ISBN);
+    }
+    return 0;
+}
 
 
+/* BC77 简单计算器 */
+#include <stdio.h>
 
+int main() {
+    char operator = 0;
+    double operand1 = 0.0, operand2 = 0.0;
 
-
-
-
-
+    scanf("%lf%c%lf", &operand1, &operator, &operand2);
+    switch (operator)
+    {
+    case '+':
+        printf("%.4lf+%.4lf=%.4lf", operand1, operand2, operand1 + operand2);
+        break;
+    case '-':
+        printf("%.4lf-%.4lf=%.4lf", operand1, operand2, operand1 - operand2);
+        break;
+    case '*':
+        printf("%.4lf*%.4lf=%.4lf", operand1, operand2, operand1 * operand2);
+        break;
+    case '/':
+        if (operand2 == 0)
+            printf("Wrong!Division by zero!\n");
+        else
+            printf("%.4lf/%.4lf=%.4lf", operand1, operand2, operand1 / operand2);
+        break;
+    default:
+        printf("Invalid operation!\n");
+        break;
+    }
+    return 0;
+}
