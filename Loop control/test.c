@@ -77,3 +77,77 @@ int main() {
 }
 
 
+/* BC82 乘法表 */
+#include <stdio.h>
+
+int main() {
+    for (int i = 1; i <= 9; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            printf("%d*%d=%2d ", j, i, j * i);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+/* BC83 牛牛学数列 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int falg = 1;
+    int sum = 0;
+
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        sum += falg * i;
+        falg *= -1;
+    }
+    printf("%d", sum);
+
+    return 0;
+}
+
+
+/* BC84 牛牛学数列2 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    double sum = 0.0;
+
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        sum += (1.0 / i);
+    }
+    printf("%.6lf", sum);
+    return 0;
+}
+
+
+/* BC85 牛牛学数列3 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int flag = 1;
+    double sum = 0.0;
+
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        sum += 1.0 / (flag * i);
+        flag *= -1;
+    }
+    printf("%.3lf", sum);
+
+    return 0;
+}
+//对题目进行一波仔细分析后可发现
+//   n: 1  2 3  4 5  6 7  8 9
+//分母: 1 -2 3 -4 5 -6 7 -8 9
