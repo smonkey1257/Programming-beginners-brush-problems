@@ -151,3 +151,88 @@ int main() {
 //对题目进行一波仔细分析后可发现
 //   n: 1  2 3  4 5  6 7  8 9
 //分母: 1 -2 3 -4 5 -6 7 -8 9
+
+
+/* BC86 牛牛学数列4 */
+#include <stdio.h>
+
+int main() {
+    int sum = 0;
+    int cur = 0;
+    int n = 0;
+
+    scanf("%d", &n);
+    for (int i = 0; i <= n; i++)
+    {
+        cur += i;
+        sum += cur;
+    }
+    printf("%d", sum);
+    return 0;
+}
+
+
+/* BC87 数位之和 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int sum = 0;
+
+    scanf("%d", &n);
+    while (n)
+    {
+        sum += (n % 10);
+        n /= 10;
+    }
+    printf("%d", sum);
+    return 0;
+}
+
+
+/* BC88 魔法数字变换 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int count = 1;
+
+    scanf("%d", &n);//输入
+    while (1)
+    {
+        n = (n % 2) ? n * 3 + 1 : n / 2;
+
+        if (n == 1)
+            break;
+
+        count++;
+    }
+    printf("%d\n", count);
+    return 0;
+}
+
+
+/* BC89 包含数字9的数 */
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+
+    for (int i = 1; i <= 2019; i++)
+    {
+        int tmp = i;
+        while (tmp > 0)//遍历i的每一位判断是否存在数字9
+        {
+            if (tmp % 10 == 9)
+            {
+                count++;
+                break;
+            }
+            else {
+                tmp /= 10;
+            }
+        }
+    }
+    printf("%d", count);
+    return 0;
+}
