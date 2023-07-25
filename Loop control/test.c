@@ -236,3 +236,99 @@ int main() {
     printf("%d", count);
     return 0;
 }
+
+
+/* BC90 小乐乐算多少人被请家长 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int CN = 0, math = 0, EN = 0;
+    int count = 0;
+
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d %d %d", &CN, &math, &EN);
+        int average = (CN + math + EN) / 3;
+        if (average < 60)
+            count++;
+    }
+    printf("%d", count);
+
+    return 0;
+}
+
+
+/* BC91 水仙花数 */
+#include <stdio.h>
+
+int IsNarcissistic(int num)
+{
+    int a = (num % 10);
+    int b = (num / 10) % 10;
+    int c = num / 100;
+    return a * a * a + b * b * b + c * c * c == num;
+}
+
+int main() {
+    int m = 0, n = 0;
+    int flag = 0;
+    while (~scanf("%d %d", &m, &n))
+    {
+        for (int i = m; i < n; i++)
+        {
+            if (IsNarcissistic(i))
+            {
+                printf("%d ", i);
+                flag = 1;
+            }
+        }
+        if (!flag)
+            printf("no\n");
+    }
+    return 0;
+}
+
+
+/* BC92 变种水仙花 */
+#include <stdio.h>
+
+int main() {
+    for (int i = 10000; i < 100000; i++)
+    {
+        int sum = 0;
+        for (int j = 10; j <= 10000; j *= 10)
+        {
+            sum += (i / j) * (i % j);
+        }
+        if (sum == i)
+            printf("%d ", i);
+    }
+    return 0;
+}
+//655 = 6 * 55 + 65 * 5
+//num = (num/100) * (num%100) + (num/10)*(num%10)
+//num = (num/1000) * (num%1000) + (num/100)*(num%100) + (num/10)*(num%10)
+//num = (num/10000) * (num%10000) + (num/1000) * (num%1000) + (num/100)*(num%100) + (num/10)*(num%10)
+
+
+/* BC93 公务员面试 */
+#include <stdio.h>
+
+int main() {
+    int score = 0;
+    int max = -1;       //保证取到最大值
+    int min = 120;      //保证取到最小值
+    int sum = 0;
+
+    for (int i = 0; i < 7; i++)
+    {
+        scanf("%d", &score);
+        max = max < score ? score : max;
+        min = min > score ? score : min;
+        sum += score;
+    }
+    printf("%.2f\n", (sum - min - max) / 5.0);
+    return 0;
+}
