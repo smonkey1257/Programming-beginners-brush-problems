@@ -332,3 +332,93 @@ int main() {
     printf("%.2f\n", (sum - min - max) / 5.0);
     return 0;
 }
+
+
+/* BC94 反向输出一个四位数 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+
+    scanf("%d", &n);
+    while (n)
+    {
+        printf("%d", n % 10);
+        n /= 10;
+    }
+    return 0;
+}
+
+
+/* BC95 小乐乐与进制转换 */
+#include <stdio.h>
+void senary(int n)
+{
+    if (n > 5)
+        senary(n / 6);
+
+    printf("%d", n % 6);
+}
+
+int main() {
+    long long n = 0;
+    scanf("%lld", &n);
+    senary(n);
+
+    return 0;
+}
+
+
+/* BC96 [NOIP2015]金币 */
+#include <stdio.h>
+#define SUM_DAYS(x) ((x)*(x+1)/2) 
+
+int main() {
+    int days = 0;
+    int sum = 0;
+    int gold_coin = 1;
+    int cur_days = 0;
+
+    scanf("%d", &days);
+    while (cur_days < days)
+    {
+        cur_days += gold_coin;
+        sum += gold_coin * gold_coin;
+        gold_coin++;
+    }
+    //循环结束之后的金币总数 > 输入天数可获得的金币总数
+    sum -= (gold_coin - 1) * (cur_days - days);
+    printf("%d", sum);
+    return 0;
+}
+
+
+/* BC97 回文对称数 */
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isPalindrome(int x) {
+    //不是回文数
+    if ((x < 0) || (x % 10 == 0 && x != 0))
+        return false;
+
+    int reverseNumber = 0;
+    //是回文数
+    while (x > reverseNumber)
+    {
+        reverseNumber = reverseNumber * 10 + x % 10;
+        x /= 10;
+    }
+    return (x == reverseNumber / 10) || (x == reverseNumber);
+}
+
+int main() {
+    int n = 0;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        if (isPalindrome(i))
+            printf("%d\n", i);
+    }
+    return 0;
+}
