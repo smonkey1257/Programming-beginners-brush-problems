@@ -422,3 +422,129 @@ int main() {
     }
     return 0;
 }
+
+
+/* BC98 线段图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            putchar('*');
+        }
+        putchar('\n');
+    }
+    return 0;
+}
+
+
+/* BC99 正方形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                printf("* ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC100 直角三角形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                printf("* ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC101 翻转直角三角形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n - i; j++)
+            {
+                printf("* ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC102 带空格直角三角形图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < num; j++)
+            {
+                if (j + i >= num - 1)
+                    printf("* ");
+                else
+                    printf("  ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC103 金字塔图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)    //五行
+        {
+            for (int j = 0; j < num - 1 - i; j++)//每行前面的空格
+            {
+                putchar(' ');
+            }
+            for (int j = 0; j <= i; j++) //每行的*
+            {
+                printf("* ");
+            }
+            putchar('\n');              //换行
+        }
+    }
+    return 0;
+}
+
+
