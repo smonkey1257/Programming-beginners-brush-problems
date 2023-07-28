@@ -548,3 +548,178 @@ int main() {
 }
 
 
+/* BC104 翻转金字塔图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = num - 1; i >= 0; i--)    //五行
+        {
+            for (int j = 0; j < num - 1 - i; j++)//每行前面的空格
+            {
+                putchar(' ');
+            }
+            for (int j = 0; j <= i; j++) //每行的*
+            {
+                printf("* ");
+            }
+            putchar('\n');              //换行
+        }
+    }
+    return 0;
+}
+//正三角和倒三角无非就是外循环参数改变一下
+
+
+/* BC105 菱形图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < (num + 1); i++)    //上半部分
+        {
+            for (int j = 0; j < num - i; j++)//每行前面的空格
+            {
+                putchar(' ');
+            }
+            for (int j = 0; j <= i; j++) //每行的*
+            {
+                printf("* ");
+            }
+            putchar('\n');              //换行
+        }
+        for (int i = num - 1; i >= 0; i--)    //下半部分
+        {
+            for (int j = 0; j < num - i; j++)
+            {
+                putchar(' ');
+            }
+            for (int j = 0; j <= i; j++)
+            {
+                printf("* ");
+            }
+            putchar('\n');
+        }
+    }
+    return 0;
+}
+
+
+/* BC106 K形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = n; i >= 1; i--)//上半部分
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                printf("* ");
+            }
+            printf("\n");
+        }
+        for (int i = 0; i < n + 1; i++)//下半部分
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                printf("* ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC107 箭形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i <= n; i++)
+        {
+            for (int j = 0; j < n - i; j++)
+            {
+                printf("  ");
+            }
+            for (int j = 0; j <= i; j++)
+            {
+                printf("*");
+            }
+            printf("\n");
+        }
+        for (int i = n - 1; i >= 0; i--)
+        {
+            for (int j = 0; j < n - i; j++)
+            {
+                printf("  ");
+            }
+            for (int j = 0; j <= i; j++)
+            {
+                printf("*");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC108 反斜线形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == j)
+                {
+                    printf("*");
+                }
+                else {
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC109 正斜线形图案 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i + j == n - 1)
+                {
+                    printf("*");
+                }
+                else {
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
