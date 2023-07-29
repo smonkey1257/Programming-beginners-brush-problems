@@ -723,3 +723,181 @@ int main() {
     }
     return 0;
 }
+
+
+/* BC110 X形图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < num; j++)
+            {
+                if (j == i || j + i == (num - 1))
+                    printf("*");
+                else
+                    printf(" ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC111 空心正方形图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < num; j++)
+            {
+                if (i == 0 || i == num - 1 || j == 0 || j == num - 1)
+                    printf("* ");
+                else
+                    printf("  ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC112 空心三角形图案 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < num; j++)
+            {
+                if (i == num - 1 || j == 0 || j == i)
+                    printf("* ");
+                else
+                    printf("  ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC113 数字三角形 */
+#include <stdio.h>
+
+int main() {
+    int num = 0;
+    while (~scanf("%d", &num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                printf("%d ", j + 1);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC114 圣诞树 */
+#include <stdio.h>
+
+int main() {
+    int hight = 0;
+    scanf("%d", &hight);
+    int spaces = hight * 3;
+
+    //打印树冠
+    for (int i = 0; i < hight; i++)
+    {
+        for (int j = spaces - 1; j > 0; j--)        //第一行前的空格
+            printf(" ");
+        for (int times = 0; times < i + 1; times++)    //第一行的内容
+            printf("*     ");
+        printf("\n");
+
+        for (int j = spaces - 2; j > 0; j--)        //第二行的空格
+            printf(" ");
+        for (int times = 0; times < i + 1; times++)    //第二行的内容
+            printf("* *   ");
+        printf("\n");
+
+        for (int j = spaces - 3; j > 0; j--)        //第三行的空格
+            printf(" ");
+        for (int times = 0; times < i + 1; times++)    //第三行的内容
+            printf("* * * ");
+        printf("\n");
+
+        spaces -= 3;
+    }
+
+    //打印树干
+    for (int i = 0; i < hight; i++)
+    {
+        for (int j = 1; j <= 3 * hight; j++)
+        {
+            if (j == 3 * hight)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+/* BC115 超级圣诞树 */
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int row = 3;
+    int col = 6;
+    char tree[400][800] = { {"  *   "}, {" * *  "}, {"* * * "} };
+    int num = 0;
+
+    scanf("%d", &num);
+    //树冠
+    for (int size = 1; size < num; size++)
+    {
+        for (int lines = 0; lines < row; lines++)
+        {
+            memcpy(tree + lines + row, tree + lines, col - 1);
+            memcpy(tree[row + lines] + col, tree[row + lines], col - 1);
+        }
+        memset(tree, ' ', row * 800);
+        for (int lines = 0; lines < row; lines++)
+            memcpy(tree[lines] + (col / 2), tree[lines + row], col);
+
+        row *= 2;
+        col *= 2;
+    }
+    //树干
+    for (int size = 1, lines = 0; size <= num; size++)
+        tree[row + size - 1][col / 2 - 1] = '*';
+
+    //输出圣诞树
+    for (int i = 0; i < row + num; i++)
+    {
+        for (int j = 0; j <= col; j++)
+            (tree[i][j] == '*') ? printf("*") : printf(" ");
+
+        printf("\n");
+    }
+    return 0;
+}
