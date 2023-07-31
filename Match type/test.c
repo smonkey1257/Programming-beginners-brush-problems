@@ -167,3 +167,219 @@ int main() {
 }
 
 
+/* BC122 有序序列判断 */
+#include <stdio.h>
+
+int main(void)
+{
+    int n = 0;
+    int arr[50] = { 0 };
+    int flag1 = 0, flag2 = 0;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+        //从第二个开始判断
+        if (i > 0)
+        {
+            //判断升序
+            if (arr[i] < arr[i - 1])
+                flag1 = 1;
+            //判断降序
+            else if (arr[i] > arr[i - 1])
+                flag2 = 1;
+        }
+    }
+    if (flag1 && flag2)
+        printf("unsorted\n");
+    else
+        printf("sorted\n");
+
+    return 0;
+}
+
+
+/* BC123 有序序列插入一个整数 */
+#include <stdio.h>
+#define N 50
+
+int main() {
+    int n = 0;
+    int array[N] = { 0 };
+    int numInsert = 0;
+
+    //输入
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    scanf("%d", &numInsert);
+
+    //插入()
+    int end = n;
+    for (; end > 0 && numInsert < array[end - 1]; end--)
+    {
+        array[end] = array[end - 1];
+    }
+    array[end] = numInsert;
+    n++;
+
+    //输出
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", array[i]);
+    }
+    return 0;
+}
+
+
+/* BC124 序列中删除指定数字 */
+#include <stdio.h>
+#define N 50
+int main() {
+    int n = 0;
+    int array[N] = { 0 };
+    int del = 0;
+
+    //输入
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    scanf("%d", &del);
+
+    //删除 - 涉及下标变化，从前往后删会出问题
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (array[i] == del)
+        {
+            for (int j = i; j < n - 1; j++)
+                array[j] = array[j + 1];
+            n--;
+        }
+    }
+
+    //输出
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", array[i]);
+    }
+    return 0;
+}
+
+
+/* BC125 序列中整数去重 */
+#include <stdio.h>
+
+int main() {
+    //解法双指针
+    int n = 0;
+    int array[1000] = { 0 };
+
+    //输入
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+
+    //去重
+    int src = 1, dest = 1;
+    while (src < n)
+    {
+        int flag = 0;           //flag等于0表示不重复
+        for (int i = 0; i < dest; i++)
+        {
+            if (array[i] == array[src])
+            {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag)                //重复就不拷贝
+            src++;
+        else                    //不重复就拷贝
+            array[dest++] = array[src++];
+    }
+
+    //输出                      //dest为去重后数组长度
+    for (int i = 0; i < dest; i++)
+        printf("%d ", array[i]);
+
+    return 0;
+}
+
+
+/* BC126 小乐乐查找数字 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int array[100] = { 0 };
+    int x = 0;
+
+    //输入
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+    scanf("%d", &x);
+
+    //累计次数
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (array[i] == x)
+            ++count;
+    }
+
+    //输出
+    printf("%d", count);
+
+    return 0;
+}
+
+
+/* BC127 筛选法求素数 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    while (~scanf("%d", &n))
+    {
+        //输入
+        int array[100];
+        for (int i = 0; i <= 100; i++)
+        {
+            array[i] = i;
+        }
+
+        //筛选 - n也在被清零的数字之一
+        int i = 2;
+        for (i = 2; i < n; i++)
+        {
+            int j = 2;
+            for (j = 2; i * j <= n; j++)
+            {
+                array[i * j] = 0;
+            }
+        }
+
+        //输出
+        int count = 0;
+        for (i = 2; i <= n; i++)
+        {
+            if (array[i])
+            {
+                printf("%d ", i);
+            }
+            else
+            {
+                count++;
+            }
+        }
+        printf("\n%d", count);
+    }
+    return 0;
+}
