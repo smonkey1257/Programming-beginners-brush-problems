@@ -383,3 +383,204 @@ int main() {
     }
     return 0;
 }
+
+
+/* BC128 班级成绩输入输出 */
+#include <stdio.h>
+#define N 5
+
+int main() {
+    double array[N][N] = { 0 };
+
+    //输入
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            scanf("%lf", &array[i][j]);
+        }
+    }
+
+    //输出
+    for (int i = 0; i < N; i++)
+    {
+        double sum = 0.0;
+        for (int j = 0; j < N; j++)
+        {
+            printf("%.1lf ", array[i][j]);
+            sum += array[i][j];
+        }
+        printf("%.1lf\n", sum);
+    }
+
+    return 0;
+}
+
+
+/* BC129 矩阵元素定位 */
+#include <stdio.h>
+#define N 10
+#define M 10
+
+int main() {
+    int n = 0, m = 0;
+    int array[N][M] = { 0 };
+
+    scanf("%d %d", &n, &m);
+    for (int row = 0; row < n; row++)
+    {
+        for (int col = 0; col < m; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+    int x = 0;
+    int y = 0;
+    scanf("%d %d", &x, &y);
+    printf("%d", array[x - 1][y - 1]);
+
+    return 0;
+}
+
+
+/* BC130 最高身高 */
+#include <stdio.h>
+
+int main() {
+    int max = -1;
+    int n = 0;
+    int m = 0;
+    int x = 0;
+    int y = 0;
+    int array[10][10] = { 0 };
+
+    scanf("%d %d", &n, &m);
+    for (int row = 0; row < n; row++)
+    {
+        for (int col = 0; col < m; col++)
+        {
+            scanf("%d", &array[row][col]);
+            if (max < array[row][col])
+            {
+                max = array[row][col];
+                x = row + 1;
+                y = col + 1;
+            }
+        }
+    }
+
+    printf("%d %d", x, y);
+
+    return 0;
+}
+
+
+/* BC131 矩阵相等判定*/
+#include <stdio.h>
+
+int main() {
+    int n = 0, m = 0;
+    int array1[10][10] = { 0 };
+    int array2[10][10] = { 0 };
+
+    scanf("%d %d", &n, &m);
+    for (int row = 0; row < n; row++)
+    {
+        for (int col = 0; col < m; col++)
+        {
+            scanf("%d", &array1[row][col]);
+        }
+    }
+
+    int flag = 1;                   //默认相同
+    for (int row = 0; row < n; row++)
+    {
+        for (int col = 0; col < m; col++)
+        {
+            scanf("%d", &array2[row][col]);
+            if (array1[row][col] != array2[row][col])
+                flag = 0;
+        }
+    }
+
+    if (flag)
+        printf("Yes\n");
+    else
+        printf("No\n");
+    return 0;
+}
+
+
+/* BC132 矩阵计算 */
+#include <stdio.h>
+
+int main() {
+    int n = 0, m = 0;
+    int array[10][10] = { 0 };
+    int sum = 0;
+
+    scanf("%d %d", &n, &m);
+    for (int row = 0; row < n; row++)
+    {
+        for (int col = 0; col < m; col++)
+        {
+            scanf("%d", &array[row][col]);
+            if (array[row][col] > 0)
+                sum += array[row][col];
+        }
+    }
+
+    printf("%d", sum);
+
+    return 0;
+}
+
+
+/* BC133 回型矩阵 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int array[20][20] = { 0 };
+
+    scanf("%d", &n);
+
+    int num = 1;
+    int lmargin = 0, rmargin = n - 1;               //左右边界
+    int row = 0, col = 0;                           //行列
+
+    while (lmargin <= rmargin)
+    {
+        while (col <= rmargin)                      //左上角->右上角
+            array[row][col++] = num++;
+        col--, row++;
+
+        while (row <= rmargin)                      //右上角->右下角
+            array[row++][col] = num++;
+        row--, col--;
+
+        while (col >= lmargin)                      //右下角->左下角
+            array[row][col--] = num++;
+        col++, row--;
+
+        lmargin++, rmargin--;                       //改变边界
+
+        while (row >= lmargin)
+            array[row--][col] = num++;              //左下角->左上角
+        row++, col++;
+    }
+
+    for (row = 0; row < n; row++)
+    {
+        for (col = 0; col < n; col++)
+        {
+            printf("%d ", array[row][col]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
