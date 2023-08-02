@@ -584,3 +584,124 @@ int main() {
 }
 
 
+/* BC134 ÉßĞÎ¾ØÕó */
+#include <stdio.h>
+#define DOWN -1
+#define  UP 1
+
+int main() {
+    int n = 0;
+    int num = 1;
+    int array[1000][1000] = { 0 };
+    int flag = UP;
+
+    scanf("%d", &n);
+    for (int lines = 0; lines < 2 * n - 1; lines++)
+    {
+        if (flag == UP)
+        {
+            for (int i = n - 1; i >= 0; i--)
+            {
+                for (int j = n - 1; j >= 0; j--)
+                {
+                    if (i + j == lines)
+                        array[i][j] = num++;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (i + j == lines)
+                        array[i][j] = num++;
+                }
+            }
+        }
+        flag *= -1;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", array[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+/* BC135 Í¼ÏñÏàËÆ¶È */
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+    int m = 0, n = 0;
+    int arr1[100][100] = { 0 };
+    int arr2[100][100] = { 0 };
+
+    scanf("%d %d", &m, &n);
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &arr1[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &arr2[i][j]);
+            if (arr2[i][j] == arr1[i][j])
+                count++;
+        }
+    }
+
+    printf("%.2lf\n", ((1.0 * count) / (m * n)) * 100);
+
+    return 0;
+}
+
+
+/* BC136 KiKiÅĞ¶ÏÉÏÈı½Ç¾ØÕó */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int flag = 1;
+    int arr[10][10] = { 0 };
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (arr[i][j] != 0)
+            {
+                flag = 0;
+                break;
+            }
+        }
+    }
+    if (flag)
+    {
+        printf("YES\n");
+    }
+    else
+    {
+        printf("NO\n");
+    }
+    return 0;
+}
