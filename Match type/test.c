@@ -705,3 +705,235 @@ int main() {
     }
     return 0;
 }
+
+
+/* BC137 序列重组矩阵 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int m = 0;
+    int arr[10][10] = { 0 };
+    scanf("%d %d", &n, &m);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            scanf("%d", &arr[i][j]);
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+/*  BC138 矩阵转置 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int m = 0;
+    int arr[10][10] = { 0 };
+    scanf("%d %d", &n, &m);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", arr[j][i]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+/* BC139 矩阵交换 */
+#include <stdio.h>
+
+void Print(int arr[][10], int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    char option = 0;
+    int  times = 0, num1 = 0, num2 = 0;
+    int row = 0, col = 0;
+    int arr[10][10] = { 0 };
+
+    scanf("%d %d", &row, &col);      // 行列
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            scanf("%d", &arr[i][j]); // 矩阵
+        }
+    }
+    scanf("%d", &times);             // 交换次数
+    while (times--)                   // 具体交换的行、列
+    {
+        getchar();                   // 吸收换行符
+        scanf("%c %d %d", &option, &num1, &num2);
+        // printf("%c\n", option);
+        switch (option)
+        {
+        case 'r':
+            for (int i = 0; i < col; i++)
+            {
+                // printf("row\n");
+                int temp = arr[num2 - 1][i];
+                arr[num2 - 1][i] = arr[num1 - 1][i];
+                arr[num1 - 1][i] = temp;
+            }
+            break;
+        case 'c':
+            for (int i = 0; i < row; i++)
+            {
+                // printf("col\n");
+                int temp = arr[i][num1 - 1];
+                arr[i][num1 - 1] = arr[i][num2 - 1];
+                arr[i][num2 - 1] = temp;
+            }
+            break;
+        default:
+            // do nothing
+            break;
+        }
+    }
+
+    Print(arr, row, col);
+
+    return 0;
+}
+
+
+/* BC140 杨辉三角 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    int arr[30][30] = { 0 };
+
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            if (j == i || j == 0)
+                arr[i][j] = 1;
+            else
+            {
+                arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            printf("%5d", arr[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+/* BC141 井字棋 */
+#include <stdio.h>
+#define ROW 3
+#define COL 3
+
+char IsWin(char board[ROW][COL], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')  // 行判断
+            return board[i][0];
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ')  // 列判断
+            return board[0][i];
+    }
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[1][1] != ' ')      // 正对角线
+        return board[1][1];
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[1][1] != ' ')      // 反对角线
+        return board[1][1];
+    return ' ';
+}
+
+int main() {
+    char board[ROW][COL];
+
+    for (int i = 0; i < ROW; i++) {           // 输入
+        for (int j = 0; j < COL; j++) {
+            scanf("%c ", &board[i][j]);
+        }
+    }
+
+    char status = IsWin(board, ROW, COL);   // 判断
+    if (status == 'K')
+        printf("KiKi wins!");
+    else if (status == 'B')
+        printf("BoBo wins!");
+    else
+        printf("No winner!");
+    return 0;
+}
+
+
+/* BC142 扫雷 */
+#include <stdio.h>
+#include <string.h>
+#define MAXSIZE 1002
+
+int main() {
+    int n = 0, m = 0;
+    char mine[MAXSIZE][MAXSIZE];
+    int nums[MAXSIZE][MAXSIZE];
+    int X_axis[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+    int Y_axis[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
+
+    memset(mine, '.', sizeof(mine));      // 初始化
+    memset(nums, 0, sizeof(nums));
+
+    scanf("%d %d", &n, &m);
+    for (int i = 1; i <= n; i++) {             // 输入
+        char tmp = getchar();// 最关键的一步，用一个临时变量吸收\n, 避免\n污染数组
+        for (int j = 1; j <= m; j++) {
+            scanf("%c", &mine[i][j]);
+        }
+    }
+
+    // 统计雷个数
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (mine[i][j] == '*')
+                for (int k = 0; k < 8; k++)
+                    nums[(X_axis[k] + i)][(Y_axis[k] + j)] += 1;
+        }
+    }
+
+    // 输出数字矩阵
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (mine[i][j] == '*')
+                printf("*");
+            else
+                printf("%d", nums[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
