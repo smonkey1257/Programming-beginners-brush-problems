@@ -937,3 +937,167 @@ int main() {
     }
     return 0;
 }
+
+
+/* BC143 [NOIP2018]标题统计 */
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int count = 0;
+    char str[100] = { 0 };
+
+    // 输入
+    gets(str);
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if (isalnum(str[i]))
+            ++count;
+    }
+
+    // 输出
+    printf("%d\n", count);
+    return 0;
+}
+
+
+/* BC144 登录验证 */
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char user[] = "admin";
+    char passwd[] = "admin";
+    char inputUser[10] = { 0 };
+    char inputPasswd[10] = { 0 };
+
+    while (~scanf("%s %s", inputUser, inputPasswd)) {
+        if (strcmp(inputUser, user) + strcmp(inputPasswd, passwd) == 0)
+            printf("Login Success!\n");
+        else
+            printf("Login Fail!\n");
+    }
+
+    return 0;
+}
+
+
+/* BC145 [NOIP2008]笨小猴 */
+#include <stdio.h>
+#include <string.h>
+
+int isPrime(int num) {
+    if (num <= 1)
+        return 0;
+
+    for (int i = 2; i < num; i++)
+    {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int maxn = -1, minn = 101;
+    char arr[26] = { 0 };
+    char str[101] = { 0 };
+
+    scanf("%s", str);
+    for (int i = 0; i < strlen(str); i++) {
+        ++arr[str[i] - 'a'];
+    }
+
+    for (int i = 0; i < strlen(str); i++) {
+        if (maxn < arr[str[i] - 'a'])
+            maxn = arr[str[i] - 'a'];
+        if (minn > arr[str[i] - 'a'])
+            minn = arr[str[i] - 'a'];
+    }
+
+    if (isPrime(maxn - minn))
+        printf("Lucky Word\n%d", maxn - minn);
+    else
+        printf("No Answer\n0");
+
+    return 0;
+}
+
+
+/* BC146 添加逗号 */
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char num[20] = { 0 };
+    scanf("%s", num);
+    int len = strlen(num);
+    for (int i = 1; i <= len; i++)
+    {
+        printf("%c", num[i - 1]);
+        if ((len - i) % 3 == 0 && i != len)
+            printf(",");
+    }
+    return 0;
+}
+
+
+/* BC147 竞选社长 */
+#include <stdio.h>
+
+int main() {
+    char arr[2] = { 0 };
+    char str = 0;
+    while ((str = getchar()) != '0')
+    {
+        ++arr[str - 'A'];
+    }
+    if (arr[0] > arr[1]) // A 竞选成功
+        printf("A\n");
+    else if (arr[0] < arr[1]) // B 竞选成功
+        printf("B\n");
+    else
+        printf("E\n"); // 平票
+    return 0;
+}
+
+
+/* BC148 字符串操作 */
+#include <stdio.h>
+
+int main() {
+    char tmp = 0;
+    char str[101] = { 0 };
+    char src = 0, dest = 0;                 // src —— 修改前；dest —— 修改后
+    int n = 0, m = 0;                       // n —— 字符长度；m —— 操作次数
+    int left = 0, right = 0;                // 区间
+
+    scanf("%d %d", &n, &m);
+    scanf("%s", str);
+    for (int i = 1; i <= m; i++)
+    {
+        scanf("%d %d %c %c", &left, &right, &src, &dest);
+        for (int j = left; j <= right; j++)  // 修改
+        {
+            if (str[j - 1] == src)
+                str[j - 1] = dest;
+        }
+    }
+    printf("%s", str);                      // 输出
+    return 0;
+}
+
+
+/* BC149 简写单词 */
+#include <ctype.h>
+#include <stdio.h>
+
+int main() {
+    char str[50] = { 0 };
+
+    while (~scanf("%s", str)) {
+        printf("%c", toupper(str[0]));
+    }
+    return 0;
+}
