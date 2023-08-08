@@ -159,3 +159,258 @@ int main() {
 }
 
 
+/* BC156 牛牛的数组匹配 */
+#include <stdio.h>
+extern int abs(int num);
+
+int main(void) {
+    int size1 = 0, size2 = 0;
+    int arr1 = 0, sum1 = 0;
+    int arr2[100] = { 0 }, sum2 = 0;
+
+    scanf("%d %d", &size1, &size2);     // 输入两个数组的长度
+    for (int i = 0; i < size1; i++) {
+        scanf("%d", &arr1);
+        sum1 += arr1;                   // 输入并累计数组1的和
+    }
+    for (int i = 0; i < size2; i++) {
+        scanf("%d", &arr2[i]);          // 输入数组2
+    }
+
+    // 找差最小的和
+    int left = 0, right = 0;            // 迭代
+    int lindex = 0, rindex = 0;         // 记录最总区间
+    int min = sum1;
+
+    for (left = 0; left < size2; left++) {
+        sum2 = arr2[left];
+        for (right = left + 1; right <= size2; right++) {
+            if (abs(sum2 - sum1) < min) {
+                min = abs(sum2 - sum1); // 判断差值，小就更新区间记录
+                lindex = left;
+                rindex = right;
+            }
+            sum2 += arr2[right];
+        }
+    }
+
+    for (int i = lindex; i < rindex; i++) {
+        printf("%d ", arr2[i]);
+    }
+    return 0;
+}
+
+
+/* BC157 素数回文 */
+#include <math.h>
+#include <stdio.h>
+
+long isPrime(long num) {
+    if (num < 2)
+        return 0;
+
+    for (int i = 2; i < sqrt(num) + 1; i++) {
+        if (num % i == 0)
+            return 0;
+    }
+
+    return 1;
+}
+
+long long makePrime(long long num) {
+    if (num / 10 == 0) {
+        return (num * 10 + num);
+    }
+    else {
+        int tmp = num / 10;
+        int ret = 0, count = 0;
+
+        while (tmp) {
+            ret = 10 * ret + (tmp % 10);
+            tmp /= 10;
+            count++;
+        }
+
+        return num * pow(10, count) + ret;
+    }
+}
+int main() {
+    long long num = 0;
+
+    scanf("%lld", &num);
+
+    // 补全回文数
+    num = makePrime(num);
+
+    // 判断回文数
+    if (isPrime(num)) {
+        printf("prime\n");
+    }
+    else {
+        printf("noprime\n");
+    }
+
+    return 0;
+}
+
+
+/* BC158 [NOIP1999]回文数 */
+#include <ctype.h>
+#include <stdio.h>
+
+int n = 0;
+int arr[20] = { 0 }, reverse[20] = { 0 };
+char str[20] = { 0 };
+int lenght = 0;
+
+
+int isPrime() {
+    for (int i = 1; i <= lenght; i++) {
+        if (arr[i] != arr[lenght + 1 - i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void strChangeNum() {
+    for (lenght = 1; str[lenght - 1]; lenght++) {    // 预留一个位置给进位
+        if (str[lenght - 1] >= '0' && str[lenght - 1] <= '9')
+            arr[lenght] = str[lenght - 1] - '0';
+        else if (str[lenght - 1] >= 'A' && str[lenght - 1] <= 'F')
+            arr[lenght] = str[lenght - 1] - 'A' + 10;
+    }
+    lenght -= 1;
+}
+
+void reverseNum() {
+    for (int i = 1; i <= lenght; i++) {
+        reverse[i] = arr[lenght + 1 - i];
+    }
+}
+
+void add() {
+    for (int i = lenght; i > 0; i--) {
+        // 进位
+        if ((arr[i] + reverse[i]) / n != 0) {
+            ++arr[i - 1];
+            arr[i] = arr[i] + reverse[i] - n;
+        }
+        // 不进位
+        else {
+            arr[i] = arr[i] + reverse[i];
+        }
+    }
+    if (arr[0] != 0) {
+        for (int i = lenght; i >= 0; i--) {
+            arr[i + 1] = arr[i];
+        }
+        arr[0] = 0;
+        ++lenght;
+    }
+}
+
+int main() {
+    int step = 0;
+
+    scanf("%d", &n);    // 进制位数
+    scanf("%s", str);   // 数字
+
+    // 字符转换数字
+    strChangeNum();
+
+    while (!isPrime()) { // 是回文数时退出循环
+        // 逆置
+        reverseNum();
+
+        //相加
+        add();
+
+        if (++step >= 30)
+            break;
+    }
+    if (step >= 30)
+        printf("Impossible!\n");
+    else
+        printf("STEP=%d", step);
+    return 0;
+}
+
+
+/* BC159 兔子的序列 */
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int n = 0;
+    int arr[1000] = { 0 };
+    int temp = 0;
+    int max = -1;
+
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+
+        temp = sqrt(arr[i]);
+
+        // 判断 （元素的开平方后的平方） 与 （原数） 是否相等
+        if ((temp *= temp) != arr[i] && arr[i] > max)
+            max = arr[i];
+    }
+
+    printf("%d", max);
+
+    return 0;
+}
+
+
+/* BC160 小q的数列 */
+#include <stdio.h>
+typedef long long ll;
+
+int main() {
+    ll t = 0, n = 0;
+    ll sum = 0, num = 0;
+
+    scanf("%lld", &t);
+    while (t--) {
+        scanf("%lld", &n);
+
+        sum = num = 0;
+
+        while (n) {      // f(n) 的结果是n的二进制位中1的个数
+            if (n & 1) {
+                sum++;
+            }
+            n >>= 1;
+        }
+        for (int j = 0; j < sum; j++) {
+            num = num * 2 + 1;  // n的最小值为sum个2^(sum-1) + 1
+        }
+        printf("%lld %lld\n", sum, num);
+    }
+    return 0;
+}
+
+
+/* BC161 大吉大利，今晚吃鸡 */
+#include <stdio.h>
+
+int main(void)
+{
+    int n = 0;
+    int sum = 0;
+
+    while (~scanf("%d", &n))
+    {
+        sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            sum = sum * 3 + 2;
+        }
+
+        printf("%d\n", sum);
+    }
+    return 0;
+}
