@@ -414,3 +414,203 @@ int main(void)
     }
     return 0;
 }
+
+
+/* BC162 牛牛的素数判断 */
+#include <stdio.h>
+#include <math.h>
+
+int isPrime(int num)
+{
+    if (num < 2)
+        return 0;
+
+    for (int i = 2; i < num; i++)
+    {
+        if (num % i == 0)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n = 0;
+    int num = 0;
+
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &num);
+
+        if (isPrime(num))
+        {
+            printf("true\n");
+        }
+        else
+        {
+            printf("false\n");
+        }
+    }
+    return 0;
+}
+
+
+/* BC163 牛牛的替换 */
+#include <stdio.h>
+
+int main() {
+    int n = 0;
+    char src1 = 0, dest1 = 0;
+    char src2 = 0, dest2 = 0;
+    char str[200] = { 0 };
+
+    scanf("%d %c %c %c %c", &n, &src1, &dest1, &src2, &dest2);
+    scanf("%s", str);
+
+    int ptr1 = 0, ptr2 = 0;
+    if (str[ptr1] == src1)      // 先处理好第一个
+        str[ptr1] = dest1, ptr1++;
+    while (ptr2 < n)
+    {
+        if (str[ptr1] == src1)  // ptr1从第二个开始
+            str[ptr1] = dest1;
+
+        if (str[ptr2] == src2)  // ptr2从第一个开始
+            str[ptr2] = dest2;
+
+        ptr1++, ptr2++;
+    }
+
+    printf("%s", str);
+    return 0;
+}
+
+
+/* BC164 牛牛的四叶玫瑰数 */
+#include <stdio.h>
+
+int isRose(int num)
+{
+    int tmp = num;
+    int sum = 0;
+
+    while (tmp)
+    {
+        int unit = tmp % 10;
+        sum += (unit * unit * unit * unit);
+        tmp /= 10;
+    }
+
+    if (sum == num)
+        return 1;
+
+    return 0;
+}
+
+int main() {
+    int left = 0, right = 0;
+
+    scanf("%d %d", &left, &right);
+
+    for (int i = left; i <= right; i++)
+    {
+        if (isRose(i))
+            printf("%d ", i);
+    }
+    return 0;
+}
+
+
+/* BC165 牛牛的10类人 */
+#include <stdio.h>
+#define MAX 31
+
+int main() {
+    int n = 0;
+    int items = 0;
+    int sum_1 = 0, sum_0;
+
+    scanf("%d", &n);
+
+    while (n--)
+    {
+        scanf("%d", &items);
+
+        sum_0 = sum_1 = 0;   // 每次都要重置
+
+        while (items)
+        {
+            if (items & 1)
+                sum_1++;
+            else
+                sum_0++;
+
+            items >>= 1;
+        }
+
+        if ((sum_1 % 2 == 0) && (sum_0 % 2 == 0))
+            printf("10 ");
+        else if (sum_1 % 2 == 0 && (sum_0 % 2 == 1))
+            printf("1 ");
+        else if (sum_0 % 2 == 0 && (sum_1 % 2 == 1))
+            printf("0 ");
+        else
+            printf("100 ");
+    }
+
+    return 0;
+}
+
+
+// recursion
+
+/* BC166 小乐乐走台阶 */
+#include<stdio.h>
+
+int fib(int num)
+{
+    if (num <= 1)
+        return 1;
+
+    return fib(num - 1) + fib(num - 2);
+}
+
+int main(void)
+{
+    int n = 0;       // 说白了就是一个斐波那契数列
+
+    scanf("%d", &n);
+
+    printf("%d", fib(n));
+
+    return 0;
+}
+
+
+/* BC167 函数实现计算一个数的阶乘 */
+#include <iostream>
+using namespace std;
+
+long long factorial(int n);
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    cout << factorial(n) << endl;
+
+    return 0;
+}
+
+long long factorial(int n) {
+
+    // write your code here......
+    if (n <= 1)
+        return 1;
+
+    return n * factorial(n - 1);
+
+}
